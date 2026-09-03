@@ -3,87 +3,318 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Airbnb Smart Sorting</title>
+    <title>Airbnb Smart Sorting - Employee Portal</title>
     <link rel="stylesheet" href="../../styles/popup.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>🏠 Airbnb Smart Sort</h1>
-            <p>Advanced sorting & filtering</p>
-        </header>
+    <div class="airbnb-modal">
+        <!-- Header with Employee Info -->
+        <div class="modal-header">
+            <div class="header-content">
+                <svg class="airbnb-logo" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+                </svg>
+                <div class="header-text">
+                    <h1 class="modal-title">Executive Booking Portal</h1>
+                    <p class="emp-subtitle">Customer Search Assistant</p>
+                </div>
+            </div>
+            <button class="close-btn" id="closeBtn" title="Close">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
 
-        <main>
-            <!-- Sorting Options -->
-            <section class="sorting-section">
-                <h2>Sorting Options</h2>
+        <!-- Main Content -->
+        <div class="modal-body">
+            
+            <!-- QUICK PRESET TEMPLATES - For Fast Customer Service -->
+            <div class="preset-templates">
+                <h2 class="section-title">💡 Quick Customer Profiles</h2>
+                <p class="preset-subtitle">Click to instantly set customer filters</p>
                 
-                <div class="option">
-                    <input type="radio" id="sort-nearby" name="sortType" value="nearby" checked>
-                    <label for="sort-nearby">
-                        <span class="icon">📍</span>
-                        <span class="text">Sort by Nearby</span>
+                <div class="template-grid">
+                    <button class="template-card" data-template="honeymoon">
+                        <span class="template-icon">💑</span>
+                        <span class="template-name">Honeymoon</span>
+                        <span class="template-desc">Luxury + High Rating</span>
+                    </button>
+                    <button class="template-card" data-template="family">
+                        <span class="template-icon">👨‍👩‍👧‍👦</span>
+                        <span class="template-name">Family</span>
+                        <span class="template-desc">Kitchen + Space</span>
+                    </button>
+                    <button class="template-card" data-template="budget">
+                        <span class="template-icon">💼</span>
+                        <span class="template-name">Budget Trip</span>
+                        <span class="template-desc">Low Cost + Nearby</span>
+                    </button>
+                    <button class="template-card" data-template="business">
+                        <span class="template-icon">💻</span>
+                        <span class="template-name">Business</span>
+                        <span class="template-desc">WiFi + Parking</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- CUSTOMER DETAILS FORM -->
+            <div class="customer-details-section">
+                <h2 class="section-title">📋 Customer Requirements</h2>
+                
+                <div class="form-group">
+                    <label for="customerName" class="form-label">Customer Name</label>
+                    <input type="text" id="customerName" class="form-input" placeholder="e.g., John Smith">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="guests" class="form-label">Number of Guests</label>
+                        <select id="guests" class="form-select">
+                            <option value="1">1 Guest</option>
+                            <option value="2" selected>2 Guests</option>
+                            <option value="3">3 Guests</option>
+                            <option value="4">4 Guests</option>
+                            <option value="5">5+ Guests</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="duration" class="form-label">Duration (nights)</label>
+                        <input type="number" id="duration" class="form-input" min="1" max="90" value="3" placeholder="Days">
+                    </div>
+                </div>
+            </div>
+
+            <!-- EASY SORT SELECTION -->
+            <div class="sort-container">
+                <h2 class="section-title">🎯 Primary Sort</h2>
+                
+                <div class="sort-tabs">
+                    <button class="sort-tab active" data-sort="nearby" title="Closest to location">
+                        <span class="tab-icon">📍</span>
+                        <span class="tab-label">Nearby</span>
+                    </button>
+                    <button class="sort-tab" data-sort="budget" title="Best price options">
+                        <span class="tab-icon">💰</span>
+                        <span class="tab-label">Budget</span>
+                    </button>
+                    <button class="sort-tab" data-sort="rating" title="Best reviewed">
+                        <span class="tab-icon">⭐</span>
+                        <span class="tab-label">Top Rated</span>
+                    </button>
+                    <button class="sort-tab" data-sort="value" title="Best value for money">
+                        <span class="tab-icon">✨</span>
+                        <span class="tab-label">Best Value</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- NEARBY SECTION -->
+            <div class="sort-section active" id="nearbySection">
+                <div class="section-content">
+                    <h3 class="subsection-title">Distance Preference</h3>
+                    
+                    <div class="distance-grid">
+                        <button class="distance-card active" data-distance="5">
+                            <span class="distance-value">5</span>
+                            <span class="distance-unit">km</span>
+                            <span class="distance-desc">Very Close</span>
+                        </button>
+                        <button class="distance-card" data-distance="10">
+                            <span class="distance-value">10</span>
+                            <span class="distance-unit">km</span>
+                            <span class="distance-desc">Close</span>
+                        </button>
+                        <button class="distance-card" data-distance="25">
+                            <span class="distance-value">25</span>
+                            <span class="distance-unit">km</span>
+                            <span class="distance-desc">Moderate</span>
+                        </button>
+                        <button class="distance-card" data-distance="50">
+                            <span class="distance-value">50</span>
+                            <span class="distance-unit">km</span>
+                            <span class="distance-desc">Flexible</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BUDGET SECTION -->
+            <div class="sort-section" id="budgetSection">
+                <div class="section-content">
+                    <h3 class="subsection-title">Price Range</h3>
+                    
+                    <div class="price-inputs-wrapper">
+                        <div class="price-input-group">
+                            <label for="minPrice">Min. per night</label>
+                            <div class="price-input-container">
+                                <span class="currency-symbol">$</span>
+                                <input type="number" id="minPrice" min="0" max="5000" value="0" placeholder="0">
+                            </div>
+                        </div>
+                        <div class="price-divider">→</div>
+                        <div class="price-input-group">
+                            <label for="maxPrice">Max. per night</label>
+                            <div class="price-input-container">
+                                <span class="currency-symbol">$</span>
+                                <input type="number" id="maxPrice" min="0" max="5000" value="1000" placeholder="5000">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="price-slider-wrapper">
+                        <input type="range" id="priceRange" min="0" max="5000" value="1000" class="airbnb-slider">
+                    </div>
+
+                    <!-- QUICK BUDGET PRESETS -->
+                    <div class="budget-presets">
+                        <button class="preset-btn" data-preset="budget">🏠 Budget<br><small>$0-$150</small></button>
+                        <button class="preset-btn" data-preset="moderate">🏡 Moderate<br><small>$150-$500</small></button>
+                        <button class="preset-btn" data-preset="premium">🏰 Premium<br><small>$500-$1500</small></button>
+                        <button class="preset-btn" data-preset="luxury">👑 Luxury<br><small>$1500+</small></button>
+                    </div>
+
+                    <div class="results-preview">
+                        <span class="preview-label">Selected Range:</span>
+                        <span class="preview-range"><span id="priceMin">$0</span> - <span id="priceMax">$1,000</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RATING SECTION -->
+            <div class="sort-section" id="ratingSection">
+                <div class="section-content">
+                    <h3 class="subsection-title">Minimum Quality Rating</h3>
+                    
+                    <div class="rating-selector">
+                        <button class="rating-option" data-rating="3.5">
+                            <span class="stars">⭐⭐⭐✨</span>
+                            <span class="rating-text">3.5+ (Good)</span>
+                        </button>
+                        <button class="rating-option" data-rating="4.0">
+                            <span class="stars">⭐⭐⭐⭐</span>
+                            <span class="rating-text">4.0+ (Very Good)</span>
+                        </button>
+                        <button class="rating-option" data-rating="4.5">
+                            <span class="stars">⭐⭐⭐⭐✨</span>
+                            <span class="rating-text">4.5+ (Excellent)</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VALUE SECTION (Price per Night based on Duration) -->
+            <div class="sort-section" id="valueSection">
+                <div class="section-content">
+                    <h3 class="subsection-title">Total Trip Budget</h3>
+                    
+                    <div class="total-budget-display">
+                        <div class="budget-calc">
+                            <span class="calc-label">Budget ÷ Nights =</span>
+                            <span class="calc-result"><span id="perNightCalc">$333</span>/night</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="totalBudget" class="form-label">Total Trip Budget</label>
+                        <div class="price-input-container">
+                            <span class="currency-symbol">$</span>
+                            <input type="number" id="totalBudget" min="0" max="50000" value="1000" placeholder="5000">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QUICK AMENITIES FOR CUSTOMER NEEDS -->
+            <div class="customer-needs-section">
+                <h3 class="subsection-title">🏅 Essential Amenities</h3>
+                
+                <div class="amenity-grid">
+                    <label class="amenity-item">
+                        <input type="checkbox" class="amenity-checkbox" value="wifi">
+                        <div class="amenity-icon">📶</div>
+                        <span class="amenity-label">WiFi</span>
+                    </label>
+                    <label class="amenity-item">
+                        <input type="checkbox" class="amenity-checkbox" value="kitchen">
+                        <div class="amenity-icon">🍳</div>
+                        <span class="amenity-label">Kitchen</span>
+                    </label>
+                    <label class="amenity-item">
+                        <input type="checkbox" class="amenity-checkbox" value="parking">
+                        <div class="amenity-icon">🅿️</div>
+                        <span class="amenity-label">Parking</span>
+                    </label>
+                    <label class="amenity-item">
+                        <input type="checkbox" class="amenity-checkbox" value="pool">
+                        <div class="amenity-icon">🏊</div>
+                        <span class="amenity-label">Pool</span>
+                    </label>
+                    <label class="amenity-item">
+                        <input type="checkbox" class="amenity-checkbox" value="gym">
+                        <div class="amenity-icon">💪</div>
+                        <span class="amenity-label">Gym</span>
+                    </label>
+                    <label class="amenity-item">
+                        <input type="checkbox" class="amenity-checkbox" value="ac">
+                        <div class="amenity-icon">❄️</div>
+                        <span class="amenity-label">A/C</span>
                     </label>
                 </div>
+            </div>
 
-                <div class="option">
-                    <input type="radio" id="sort-budget" name="sortType" value="budget">
-                    <label for="sort-budget">
-                        <span class="icon">💰</span>
-                        <span class="text">Sort by Budget</span>
-                    </label>
+            <!-- RESULTS SUMMARY -->
+            <div class="quick-stats">
+                <h3 class="subsection-title">📊 Results Summary</h3>
+                <div class="stat">
+                    <span class="stat-value" id="listingCount">0</span>
+                    <span class="stat-label">Available Listings</span>
                 </div>
-            </section>
+                <div class="stat">
+                    <span class="stat-value" id="avgPrice">$0</span>
+                    <span class="stat-label">Avg. Nightly Rate</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value" id="avgRating">4.5</span>
+                    <span class="stat-label">Avg. Rating</span>
+                </div>
+            </div>
 
-            <!-- Budget Range Slider -->
-            <section class="budget-section" id="budgetSection" style="display: none;">
-                <h3>Budget Range</h3>
-                <div class="budget-inputs">
-                    <div class="input-group">
-                        <label for="minBudget">Min ($)</label>
-                        <input type="number" id="minBudget" min="0" max="5000" value="0">
-                    </div>
-                    <div class="input-group">
-                        <label for="maxBudget">Max ($)</label>
-                        <input type="number" id="maxBudget" min="0" max="5000" value="1000">
-                    </div>
-                </div>
-                <input type="range" id="budgetRange" min="0" max="5000" value="1000" class="slider">
-                <div class="range-display">
-                    <span id="rangeMin">$0</span> - <span id="rangeMax">$1000</span>
-                </div>
-            </section>
+            <!-- EMPLOYEE NOTES FOR CUSTOMER -->
+            <div class="notes-section">
+                <h3 class="subsection-title">📝 Booking Notes</h3>
+                <textarea id="bookingNotes" class="notes-input" placeholder="Add any special customer requests or notes here...&#10;E.g., 'Looking for romantic getaway', 'Business trip with team'"></textarea>
+            </div>
+        </div>
 
-            <!-- Distance Radius for Nearby -->
-            <section class="distance-section" id="distanceSection">
-                <h3>Distance Radius</h3>
-                <div class="distance-options">
-                    <button class="distance-btn active" data-distance="5">5 km</button>
-                    <button class="distance-btn" data-distance="10">10 km</button>
-                    <button class="distance-btn" data-distance="25">25 km</button>
-                    <button class="distance-btn" data-distance="50">50 km</button>
-                </div>
-            </section>
+        <!-- Footer with Actions -->
+        <div class="modal-footer">
+            <button class="btn-secondary" id="resetBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+                    <path d="M21 3v5h-5"></path>
+                </svg>
+                Reset All
+            </button>
+            <button class="btn-info" id="saveBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                </svg>
+                Save Search
+            </button>
+            <button class="btn-primary" id="applyBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Find & Show Results
+            </button>
+        </div>
 
-            <!-- Settings -->
-            <section class="settings-section">
-                <h3>Settings</h3>
-                <div class="toggle">
-                    <input type="checkbox" id="autoApply" checked>
-                    <label for="autoApply">Auto-apply sorting</label>
-                </div>
-                <div class="toggle">
-                    <input type="checkbox" id="showDistance" checked>
-                    <label for="showDistance">Show distance on cards</label>
-                </div>
-            </section>
-        </main>
-
-        <!-- Action Buttons -->
-        <footer>
-            <button id="applyBtn" class="btn btn-primary">Apply Sorting</button>
-            <button id="resetBtn" class="btn btn-secondary">Reset</button>
-        </footer>
+        <!-- Keyboard Shortcuts -->
+        <div class="keyboard-hint">
+            <span class="hint-text">💡 Tip: Use templates for faster customer service | <kbd>Esc</kbd> to close</span>
+        </div>
     </div>
 
     <script src="popup.js"></script>
