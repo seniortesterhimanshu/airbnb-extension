@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airbnb Smart Sorting</title>
+    <link rel="stylesheet" href="../../styles/popup.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏠 Airbnb Smart Sort</h1>
+            <p>Advanced sorting & filtering</p>
+        </header>
+
+        <main>
+            <!-- Sorting Options -->
+            <section class="sorting-section">
+                <h2>Sorting Options</h2>
+                
+                <div class="option">
+                    <input type="radio" id="sort-nearby" name="sortType" value="nearby" checked>
+                    <label for="sort-nearby">
+                        <span class="icon">📍</span>
+                        <span class="text">Sort by Nearby</span>
+                    </label>
+                </div>
+
+                <div class="option">
+                    <input type="radio" id="sort-budget" name="sortType" value="budget">
+                    <label for="sort-budget">
+                        <span class="icon">💰</span>
+                        <span class="text">Sort by Budget</span>
+                    </label>
+                </div>
+            </section>
+
+            <!-- Budget Range Slider -->
+            <section class="budget-section" id="budgetSection" style="display: none;">
+                <h3>Budget Range</h3>
+                <div class="budget-inputs">
+                    <div class="input-group">
+                        <label for="minBudget">Min ($)</label>
+                        <input type="number" id="minBudget" min="0" max="5000" value="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="maxBudget">Max ($)</label>
+                        <input type="number" id="maxBudget" min="0" max="5000" value="1000">
+                    </div>
+                </div>
+                <input type="range" id="budgetRange" min="0" max="5000" value="1000" class="slider">
+                <div class="range-display">
+                    <span id="rangeMin">$0</span> - <span id="rangeMax">$1000</span>
+                </div>
+            </section>
+
+            <!-- Distance Radius for Nearby -->
+            <section class="distance-section" id="distanceSection">
+                <h3>Distance Radius</h3>
+                <div class="distance-options">
+                    <button class="distance-btn active" data-distance="5">5 km</button>
+                    <button class="distance-btn" data-distance="10">10 km</button>
+                    <button class="distance-btn" data-distance="25">25 km</button>
+                    <button class="distance-btn" data-distance="50">50 km</button>
+                </div>
+            </section>
+
+            <!-- Settings -->
+            <section class="settings-section">
+                <h3>Settings</h3>
+                <div class="toggle">
+                    <input type="checkbox" id="autoApply" checked>
+                    <label for="autoApply">Auto-apply sorting</label>
+                </div>
+                <div class="toggle">
+                    <input type="checkbox" id="showDistance" checked>
+                    <label for="showDistance">Show distance on cards</label>
+                </div>
+            </section>
+        </main>
+
+        <!-- Action Buttons -->
+        <footer>
+            <button id="applyBtn" class="btn btn-primary">Apply Sorting</button>
+            <button id="resetBtn" class="btn btn-secondary">Reset</button>
+        </footer>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
