@@ -9,6 +9,7 @@
     --text-light: #717171;
     --success-color: #4caf50;
     --info-color: #2196f3;
+    --download-color: #ff9800;
 }
 
 * {
@@ -787,7 +788,8 @@ body {
 /* ===== BUTTONS ===== */
 .btn-primary,
 .btn-secondary,
-.btn-info {
+.btn-info,
+.btn-download {
     flex: 1;
     padding: 12px 16px;
     border: none;
@@ -837,6 +839,22 @@ body {
 
 .btn-info:hover {
     box-shadow: 0 4px 12px rgba(33, 150, 243, 0.25);
+    transform: translateY(-2px);
+}
+
+.btn-download {
+    background: linear-gradient(135deg, var(--download-color) 0%, #ff7c00 100%);
+    color: white;
+    flex: 1;
+}
+
+.btn-download:hover {
+    box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn-download:active {
+    transform: translateY(0);
 }
 
 /* ===== KEYBOARD HINT ===== */
@@ -950,7 +968,8 @@ kbd {
 
     .btn-primary,
     .btn-secondary,
-    .btn-info {
+    .btn-info,
+    .btn-download {
         width: 100%;
     }
 }
